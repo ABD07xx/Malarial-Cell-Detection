@@ -16,16 +16,16 @@ st.title("Malarial Cell Disease Detection")
 st.markdown("Upload an image of the cell")
 
 #Uploading the dog image
-plant_image = st.file_uploader("Choose an image...", type="png")
+cell_image = st.file_uploader("Choose an image...", type="png")
 submit = st.button('Predict')
 #On predict button click
 if submit:
 
 
-    if plant_image is not None:
+    if cell_image is not None:
 
         # Convert the file to an opencv image.
-        file_bytes = np.asarray(bytearray(plant_image.read()), dtype=np.uint8)
+        file_bytes = np.asarray(bytearray(cell_image.read()), dtype=np.uint8)
         opencv_image = cv2.imdecode(file_bytes, 1)
 
 
@@ -40,5 +40,5 @@ if submit:
         #Make Prediction
         Y_pred = model.predict(opencv_image)
         result = CLASS_NAMES[np.argmax(Y_pred)]
-        st.title("Plant is "+result)
+        st.title("Cell is "+result)
         
